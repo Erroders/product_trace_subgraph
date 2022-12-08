@@ -1,5 +1,35 @@
-type ExampleEntity @entity {
-  id: ID!
-  block: Bytes!
-  count: BigInt!
+type Supplychain @entity {
+    id: ID!
+    operatorName: String!
+    operatorMetadataStringified: String!
+    operatorMetadata: SupplychainOperatorMetadata
+}
+
+type SupplychainOperatorMetadata @entity {
+    id: ID!
+    name: String!
+    description: String
+    website: String
+    location: String
+}
+
+type Product @entity {
+    id: ID!
+    metadataStringified: String!
+    metadata: ProductMetadata
+    supplychain: Supplychain!
+}
+
+type ProductMetadata @entity {
+    id: ID!
+    name: String!
+    description: String
+}
+
+type Log @entity {
+    id: ID!
+    timestamp: String!
+    product: Product!
+    location: String
+    content: String!
 }

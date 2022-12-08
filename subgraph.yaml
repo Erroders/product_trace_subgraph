@@ -1,17 +1,41 @@
 specVersion: 0.0.4
+description: ProductTrace
 schema:
   file: ./schema.graphql
 dataSources:
+  # - kind: near
+  #   name: ProductTrace
+  #   network: near-testnet
+  #   source:
+  #     account: product-trace.testnet
+  #   mapping:
+  #     apiVersion: 0.0.5
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Supplychain
+  #       - SupplychainMetadata
+  #       - Product
+  #       - ProductMetadata
+  #       - Log
+  #     receiptHandlers:
+  #       - handler: handleReceipt
+  #     file: ./src/product-trace.ts
   - kind: near
-    name: ProductTrace
+    name: SupplychainOrProduct
     network: near-testnet
     source:
-      account: "product-trace.testnet"
+      accounts:
+        suffixes:
+          - product-trace.testnet
     mapping:
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - ExampleEntity
+        - Supplychain
+        - SupplychainMetadata
+        - Product
+        - ProductMetadata
+        - Log
       receiptHandlers:
         - handler: handleReceipt
-      file: ./src/product-trace.ts
+      file: ./src/supplychain-or-product.ts
